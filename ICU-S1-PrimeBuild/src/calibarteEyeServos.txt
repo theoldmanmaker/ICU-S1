@@ -1,0 +1,79 @@
+We calibrate the center position of the eye by plugging servo channel 1 (x axis) into the PCA9685 - the servo with stop at the proposed center position.
+We then attach the servo horns and align the eye ball structure to centered.
+
+We then add the servo channel 2 which is for the y axis and do the same thing. This should give us a perfectly centered eyeball for startup.
+
+
+
+
+#include <Arduino.h>
+#include <ProjectState.h>
+#include "ScreenController.h"
+#include "ServoController.h"
+
+// (LedController placeholder class remains the same)
+class LedController {
+private:
+    bool _isInitialized;
+public:
+    LedController() : _isInitialized(false) {}
+    bool isInitialized() { return _isInitialized; }
+    bool begin() {
+        Serial.println("LedController: Initializing ATTiny85s...");
+        delay(500);
+        Serial.println("LedController: Ready.");
+        _isInitialized = true;
+        return true;
+    }
+    void setState(SystemState newState) { /* For later */ }
+    void update() { if(!_isInitialized) return; /* For later */ }
+};
+
+// --- Global pointers to our component controllers
+ScreenController *screenController = nullptr;
+ServoController *servoController = nullptr;
+LedController *ledController = nullptr;
+
+void setup() {
+  Serial.begin(115200);
+  delay(2000);
+  Serial.println("FeatherS3 Robot - EYEBALL CALIBRATION MODE");
+
+  // Create and initialize the servo controller
+  servoController = new ServoController();
+  if (!servoController->begin()) {
+    Serial.println("FATAL: Servo Controller failed to initialize. System Halted.");
+    while(1); // Halt on error
+  }
+
+  // ================================================================
+  // == TEMPORARY CALIBRATION CODE                                 ==
+  // ================================================================
+  // This section moves the eyeball servos to their center positions
+  // and then stops the program, allowing you to attach the servo horns.
+  
+  servoController->moveToCalibrationCenter();
+
+  // Halt the program here. The servos will hold their position.
+  while(1) {
+    delay(1000);
+  }
+  // ================================================================
+  // == AFTER CALIBRATION, DELETE THE CODE ABOVE AND UNCOMMENT THE ==
+  // == NORMAL STARTUP CODE BELOW.                                 ==
+  // ================================================================
+
+  /*
+  // --- NORMAL STARTUP CODE ---
+  Serial.println("FeatherS3 Robot - Main Control Program Initializing...");
+  screenController = new ScreenController();
+  ledController = new LedController();
+  randomSeed(analogRead(A3));
+  Serial.println("Setup complete. Entering main loop to begin staggered startup.");
+  */
+}
+
+void loop() {
+  // The loop() will not be reached while in calibration mode.
+  // The normal state machine logic will be restored later.
+}
