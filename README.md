@@ -44,18 +44,27 @@ Contains all 3D printable files required for the build.
 
 ## 🔌 PCB Designs & Flux.ai
 
-All PCB designs for this project are hosted on **Flux**. The Bill of Materials (BOM) for the boards is also contained inside the Flux projects.
+All PCB designs for this project are hosted on **Flux**.
 
-**RGB LED Array:**
+### 1. RGB LED Array (Completed)
+This board manages the lighting for the robot using integrated ATTiny85 chips.
 * **[View Project on Flux.ai](https://www.flux.ai/oldmanmaker/icus1-ledringv2?utm_source=influencer&utm_medium=organic_social&utm_campaign=oldmanmaker2)**
 
-**How to manufacture:**
-1.  Click the link above to view the project on Flux.
+**Instructions:**
+1.  Click the link above.
 2.  **Fork** the project to your own workspace.
 3.  Make any modifications you require.
-4.  **Export the Gerber files** from the editor and send them to your preferred board manufacturer.
+4.  **Export the Gerber files** from the editor and send them to your preferred board manufacturer (e.g., PCBWay or others).
 
-> **Manufacturing Note:** The boards were originally designed to be manufactured by PCBWay, but you can adjust the board settings in Flux to match your preferred manufacturer if needed.
+### 2. Main Carrier Board (Status: Incomplete)
+**⚠️ Important Hardware Notice:**
+The core device PCB design (the "motherboard" connecting the ProS3 and components) is **not yet completed**.
+* **Missing Features:** Currently, there are no battery management or recharge circuits designed.
+* **Prototyping:** A **3D printable template** of the prototype board (as seen in the YouTube video) is available in the `/STLs` folder to help you hand-wire a prototype.
+* **Future Dev:** A complete stack of PCBs requires additional work that is not currently planned.
+
+**🤝 Call for Contributors:**
+If you have PCB design skills and would like to contribute to creating the main carrier board or power management system, **please get in contact!** We would love to collaborate to finish this part of the project.
 
 ---
 
@@ -80,6 +89,8 @@ All PCB designs for this project are hosted on **Flux**. The Bill of Materials (
 
 **This project is Open Source for Non-Commercial and Hobby use only.**
 
+It is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)**.
+
 You are free to download, print, build, and modify the ICU-S1 for your own personal enjoyment and education.
 
 **🚫 Commercial Restrictions:**
@@ -87,7 +98,7 @@ You are free to download, print, build, and modify the ICU-S1 for your own perso
 * You may **not** use derived works for commercial gain without express permission.
 
 **🤝 Commercial Inquiries:**
-If you are interested in selling parts of this project or creating derived works for commercial applications, please **open an issue in this repository** titled "Commercial Inquiry." We can discuss how to support your goals while ensuring the project's original creators and sponsors are respected.
+If you are interested in selling parts of this project or creating derived works for commercial applications, please **open an issue in this repository** titled "Commercial Inquiry."
 
 ---
 
@@ -98,4 +109,4 @@ A massive thank you to the sponsors who made this open-source project possible.
 * **[Flux.ai](https://www.flux.ai/?utm_source=influencer&utm_medium=organic_social&utm_campaign=oldmanmaker2)** - For hosting the PCB designs and enabling collaborative hardware design.
 
 ---
-*Maintained by Brennon Williams. Watch the build on [YouTube](https://youtube.com/@OldManMaker).*
+*Maintained by Brennon Williams. Watch the build on [YouTube](https://youtu.be/L9SUTQhSwVA).*
